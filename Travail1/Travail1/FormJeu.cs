@@ -6,8 +6,10 @@ namespace Travail1
 {
     public partial class FormJeu : Form
     {
+        private Random random;
         private Controleur controleur;
         private AffichageJoueur[] affichageJoueurs;
+        private Joueur joueur;
 
         public FormJeu(string nomJoueur1, string nomJoueur2)
         {
@@ -53,6 +55,13 @@ namespace Travail1
         {
             controleur.InitialiserInfoJoueurs();
             lbl_JoueurCourant.Text = controleur.Joueurs[0].Nom;
+        }
+
+        private void btn_LancerDe_Click(object sender, EventArgs e)
+        {
+            random = new Random();
+            int nombreCase = random.Next(1, 7);
+            controleur.Joueurs[0].AvancerJoueur(nombreCase);
         }
     }
 }

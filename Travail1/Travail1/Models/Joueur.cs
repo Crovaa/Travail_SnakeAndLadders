@@ -32,6 +32,17 @@ namespace Travail1.Models
             this.diametre = 20;
         }
 
+        public void JoueurABouger()
+        {
+            ABouger?.Invoke(this, EventArgs.Empty);
+        }
+
+        public int AvancerJoueur(int nombreCase)
+        {
+            position = position + nombreCase;
+            return position;
+        }
+
         private PointF ObtenirCoordonees()
         {
             int y = (7 - (position / 8));

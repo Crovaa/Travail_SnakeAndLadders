@@ -19,6 +19,12 @@ namespace Travail1.Controls
             Height = 801;
             Width = 801;
             Image = joueur.Dessiner();
+            joueur.ABouger += Joueur_ABouger;
+        }
+
+        private void Joueur_ABouger(object? sender, EventArgs e)
+        {
+            Image = joueur.Dessiner();
         }
     }
 }

@@ -82,6 +82,7 @@
             this.btn_LancerDe.TabIndex = 4;
             this.btn_LancerDe.Text = "Lancer Dé";
             this.btn_LancerDe.UseVisualStyleBackColor = true;
+            this.btn_LancerDe.Click += new System.EventHandler(this.btn_LancerDe_Click);
             // 
             // FormJeu
             // 
