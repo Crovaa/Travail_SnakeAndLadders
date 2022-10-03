@@ -1,3 +1,4 @@
+using System.Configuration;
 using Travail1.Controllers;
 using Travail1.Controls;
 using Travail1.Models;
@@ -9,7 +10,7 @@ namespace Travail1
         private Random random;
         private Controleur controleur;
         private AffichageJoueur[] affichageJoueurs;
-        private Joueur joueur;
+        private Joueur joueurCourant;
 
         public FormJeu(string nomJoueur1, string nomJoueur2)
         {
@@ -54,14 +55,44 @@ namespace Travail1
         private void InitAffichageInfoJoueur()
         {
             controleur.InitialiserInfoJoueurs();
-            lbl_JoueurCourant.Text = controleur.Joueurs[0].Nom;
+            lbl_JoueurCourant.Text = ObtenirJoueurCourant(controleur.Joueurs[0]).Nom;
         }
 
         private void btn_LancerDe_Click(object sender, EventArgs e)
         {
+            if (lbl_JoueurCourant.Text == ObtenirJoueurCourant(controleur.Joueurs[0]).Nom)
+            {
+                AvancerJoueur1();
+            }
+            else
+            {
+                AvancerJoueur2();
+            }
+
+        }
+
+        private Joueur ObtenirJoueurCourant(Joueur joueur)
+        {
+            joueurCourant = joueur;
+            return joueurCourant;
+        }
+        
+        private void AvancerJoueur1()
+        {
             random = new Random();
             int nombreCase = random.Next(1, 7);
             controleur.Joueurs[0].AvancerJoueur(nombreCase);
+            controleur.Joueurs[0].JoueurABouger();
+            lbl_JoueurCourant.Text = ObtenirJoueurCourant(controleur.Joueurs[1]).Nom;
+        }
+
+        private void AvancerJoueur2()
+        {
+            random = new Random();
+            int nombreCase = random.Next(1, 7);
+            controleur.Joueurs[1].AvancerJoueur(nombreCase);
+            controleur.Joueurs[1].JoueurABouger();
+            lbl_JoueurCourant.Text = ObtenirJoueurCourant(controleur.Joueurs[0]).Nom;
         }
     }
 }
