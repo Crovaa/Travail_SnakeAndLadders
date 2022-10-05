@@ -2,6 +2,8 @@ using System.Configuration;
 using Travail1.Controllers;
 using Travail1.Controls;
 using Travail1.Models;
+using Travail1.Models.Case;
+using Travail1.Models.Point;
 
 namespace Travail1
 {
@@ -63,12 +65,19 @@ namespace Travail1
             if (lbl_JoueurCourant.Text == ObtenirJoueurCourant(controleur.Joueurs[0]).Nom)
             {
                 AvancerJoueur1();
+                if (controleur.Joueurs[0].Position >= 64)
+                {
+                    MessageBox.Show("partie terminée.");
+                }
             }
             else
             {
                 AvancerJoueur2();
+                if (controleur.Joueurs[1].Position >= 64)
+                {
+                    MessageBox.Show("partie terminée.");
+                }
             }
-
         }
 
         private Joueur ObtenirJoueurCourant(Joueur joueur)
